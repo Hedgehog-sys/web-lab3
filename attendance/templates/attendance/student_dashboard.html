@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Кабинет Студента</title>
+</head>
+<body>
+    <h2>Личный кабинет студента</h2>
+    <p>Вы успешно зашли под ролью Студента.</p>
+    <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #dc3545; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer;">Выйти</button>
+    </form>
+</body>
+</html>
