@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в систему</title>
+    <link href="https://jsdelivr.net" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'attendance/css/style.css' %}">
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center vh-100">
+    <div class="card p-4 shadow" style="max-width: 400px; width: 100%;">
+
+        <div class="text-center mb-3">
+            <img src="{% static 'attendance/images/logo.png' %}" alt="Логотип СТИ" class="img-fluid" style="max-height: 80px;">
+        </div>
+
+        <h4 class="text-center mb-4 text-primary">Авторизация СТИ</h4>
+        
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger text-center p-2 small">Неверный логин или пароль</div>
+            {% endif %}
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Логин</label>
+                <input type="text" name="username" class="form-control" required placeholder="Введите логин">
+            </div>
+            <div class="mb-3">
+                <label class="form-label font-weight-bold">Пароль</label>
+                <input type="password" name="password" class="form-control" required placeholder="Введите пароль">
+            </div>
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <button type="submit" class="btn btn-primary w-100 py-2">Войти</button>
+        </form>
+    </div>
+</body>
+</html>

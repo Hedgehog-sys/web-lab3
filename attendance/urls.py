@@ -1,0 +1,9 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('redirect/', views.profile_redirect_view, name='profile_redirect'),
+    path('student/', views.student_dashboard, name='student_dashboard'),
+    path('teacher/', views.teacher_dashboard, name='teacher_dashboard'),
+    path('common/', views.common_dashboard, name='common_dashboard'),
+]

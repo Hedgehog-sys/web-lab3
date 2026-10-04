@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель Студента</title>
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="{% static 'attendance/css/style.css' %}">
+
+    <style>
+        .collapse:not(.show) {
+            display: none !important;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4 p-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'attendance/images/logo.png' %}" alt="Логотип СТИ" width="30" class="d-inline-block align-text-top me-2">
+                Электронный журнал
+            </a>
+
+            <form method="post" action="{% url 'logout' %}" class="d-flex m-0">
+                {% csrf_token %}
+                <button class="btn btn-outline-danger btn-sm" type="submit">Выйти</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card shadow-sm p-4 text-center">
+                    <h3 class="mb-3 text-primary">Панель Студента</h3>
+                    <p class="text-muted">Добро пожаловать в систему посещаемости!</p>
+
+                    <button class="btn btn-outline-danger w-100" type="button" id="toggleBtn">
+                        Показать важную информацию
+                    </button>
+                    
+                    <div class="collapse mt-3" id="infoBox">
+                        <div class="card card-body bg-light text-start small">
+                            Не забывайте отмечаться на лекциях вовремя!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('toggleBtn').addEventListener('click', function() {
+            var box = document.getElementById('infoBox');
+            if (box.classList.contains('show')) {
+                box.classList.remove('show');
+            } else {
+                box.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>
